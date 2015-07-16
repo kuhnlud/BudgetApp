@@ -30,15 +30,15 @@
           <tbody>
             <tr ng-repeat = "data in pctrl.poste_data">
               <td>{{data.description}}</td>
-              <td>{{data.depense_prevu | currency:"€"}}</td>
-              <td>{{data.depense_reel | currency:"€"}}</td>
-              <td ng-class= "{ok : data.depense_reel - data.depense_prevu <= 0, bad : data.depense_reel - data.depense_prevu > 0}">{{data.depense_reel - data.depense_prevu | currency:"€"}}</td>
+              <td>{{data.depense_prevu | eurocurrency:"€":false}}</td>
+              <td>{{data.depense_reel | eurocurrency:"€":false}}</td>
+              <td ng-class= "{ok : pctrl.depense(data.description) <= 0, bad : pctrl.depense(data.description) > 0}">{{pctrl.depense(data.description) | eurocurrency:"€":false}}</td>
             </tr>
             <tr>
               <td class="total">Totaux</td>
-              <td>1200 €</td>
-              <td>1380 €</td>
-              <td class="bad">+ 80 €</td>
+              <td>{{pctrl.total_depense_prevu() | eurocurrency:"€":false}}</td>
+              <td>{{pctrl.total_depense_reel() | eurocurrency:"€":false}}</td>
+              <td ng-class="{ok: pctrl.total_difference()<= 0, bad : pctrl.total_difference() > 0}">{{pctrl.total_difference() | eurocurrency:"€":false}}</td>
             </tr>
           </tbody>
         </table>
@@ -52,5 +52,6 @@
     <script src="/bower_components/angular-material/angular-material.min.js" charset="utf-8"></script>
     <script src="/script/app.module.js" charset="utf-8"></script>
     <script src="/script/postes/poste.controller.js" charset="utf-8"></script>
+    <script src="/script/filters/currency.filter.js" charset="utf-8"></script>
   </body>
 </html>
