@@ -14,3 +14,22 @@
 .bad {
   color: red;
 }
+
+#poste td .edit {
+  display: none;
+}
+#poste td .view {
+  display: block;
+}
+#poste td.editing form {
+  width: 153px;
+  margin: 0;
+}
+#poste td.editing .view {
+  display: none;
+}
+#poste td.editing .edit {
+  display: block;
+  width: 153px;
+  margin: 0px;
+}

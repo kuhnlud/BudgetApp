@@ -14,6 +14,7 @@
         {description: "taxe d'habitation", depense_prevu: 650, depense_reel: 680}
       ];
 
+      vm.depense_edit = null;
 
       vm.depense = function(description_poste) {
           var total;
@@ -45,8 +46,14 @@
 
       vm.total_difference = function() {
         return vm.total_depense_reel() - vm.total_depense_prevu();
-      }
-      
+      };
+       vm.EditField = function(data) {
+         vm.depense_edit = data;
+       }
+       vm.saveEdited = function(data) {
+         vm.depense_edit = null;
+         console.log('hit');
+       }
     }
 
 }());

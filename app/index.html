@@ -20,7 +20,7 @@
     <md-sidenav md-is-locked-open="true" class=md-whiteframe-z2></md-sidenav>
     <md-content flex id="content">
       <div class="poste_depense" ng-controller="postectrl as pctrl">
-        <table class="table table-striped table-bordered">
+        <table id="poste" class="table table-striped table-bordered">
           <thead>
             <th>{{pctrl.poste_name}}</th>
             <th>Dépense Prévue</th>
@@ -30,7 +30,14 @@
           <tbody>
             <tr ng-repeat = "data in pctrl.poste_data">
               <td>{{data.description}}</td>
-              <td>{{data.depense_prevu | eurocurrency:"€":false}}</td>
+              <td ng-dblclick = pctrl.EditField(data) ng-class="{editing : data === pctrl.depense_edit}">
+                <div class="view">
+                  {{data.depense_prevu | eurocurrency:"€":false}}
+                </div>
+                <form ng-submit = pctrl.saveEdited(data)>
+                  <input ng-model = "data.depense_prevu" class = "edit" type="text" ng-blur="pctrl.saveEdited(data)">
+                </form>
+              </td>
               <td>{{data.depense_reel | eurocurrency:"€":false}}</td>
               <td ng-class= "{ok : pctrl.depense(data.description) <= 0, bad : pctrl.depense(data.description) > 0}">{{pctrl.depense(data.description) | eurocurrency:"€":false}}</td>
             </tr>
