@@ -1,0 +1,16 @@
+.poste_depense {
+  width: 600px;
+  margin: 50px;
+}
+
+.total {
+  font-weight: bold;
+}
+
+.ok {
+  color: green;
+}
+
+.bad {
+  color: red;
+}

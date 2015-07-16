@@ -1,0 +1,24 @@
+{
+  "name": "BudgetApp",
+  "version": "0.0.0",
+  "authors": [
+    "Kuhn Ludovic <ludovic.kuhn@gmail.com>"
+  ],
+  "main": "Public/index.html",
+  "keywords": [
+    "Angular",
+    "WebApp",
+    "Budget"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "~0.10.0"
+  }
+}
