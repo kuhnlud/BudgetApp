@@ -16,6 +16,7 @@
 
       vm.editingDepensePrevu = null;
       vm.editingDepenseReel = null;
+      vm.cached = null;
 
       vm.depense = function(description_poste) {
           var total;
@@ -47,18 +48,29 @@
       vm.total_difference = function() {
         return vm.total_depense_reel() - vm.total_depense_prevu();
       };
-       vm.EditDepensePrevuField = function(data) {
-         vm.editingDepensePrevu = data;
-       };
-       vm.EditDepenseReelField = function(data) {
-         vm.editingDepenseReel = data;
-       };
-       vm.saveEditedDepensePrevu = function(data) {
-         vm.editingDepensePrevu = null;
-       };
-       vm.saveEditedDepenseReel = function(data) {
-         vm.editingDepenseReel = null;
-       };
+
+      vm.EditDepensePrevuField = function(data) {
+       vm.editingDepensePrevu = data;
+       vm.cached = angular.extend({}, data);
+      };
+
+      vm.EditDepenseReelField = function(data) {
+       vm.editingDepenseReel = data;
+      };
+
+      vm.saveEditedDepensePrevu = function(data) {
+       vm.editingDepensePrevu = null;
+      };
+
+      vm.saveEditedDepenseReel = function(data) {
+       vm.editingDepenseReel = null;
+      };
+
+      vm.EscapeWithoutSaved= function(data) {
+       vm.poste_data[ vm.poste_data.indexOf(data)] = vm.cached;
+       vm.cached = null;
+       vm.editingDepensePrevu = null;
+      }
     }
 
 }());

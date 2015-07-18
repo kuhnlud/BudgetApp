@@ -35,7 +35,7 @@
                   {{data.depense_prevu | eurocurrency:"€":false}}
                 </div>
                 <form ng-submit = pctrl.saveEditedDepensePrevu(data)>
-                  <input  class="edit" type="number" ng-model = "data.depense_prevu" ng-blur="pctrl.saveEditedDepensePrevu(data)" poste-focus="data === pctrl.editingDepensePrevu">
+                  <input  class="edit" type="number" ng-model = "data.depense_prevu" cancel-escape="pctrl.EscapeWithoutSaved(data)" ng-blur="pctrl.saveEditedDepensePrevu(data)" poste-focus="data === pctrl.editingDepensePrevu">
                 </form>
               </td>
               <td ng-dblclick = pctrl.EditDepenseReelField(data) ng-class="{editing : data == pctrl.editingDepenseReel}">
@@ -67,6 +67,7 @@
     <script src="/script/app.module.js" charset="utf-8"></script>
     <script src="/script/postes/poste.controller.js" charset="utf-8"></script>
     <script src="/script/postes/focus.directive.js" charset="utf-8"></script>
+    <script src="/script/postes/escape.directive.js" charset="utf-8"></script>
     <script src="/script/filters/currency.filter.js" charset="utf-8"></script>
   </body>
 </html>

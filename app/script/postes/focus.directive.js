@@ -16,7 +16,6 @@
   				if (newVal) {
   					$timeout(function () {
   						elem[0].focus();
-              console.log(elem[0]);
   					}, 20);
   				}
   			});
