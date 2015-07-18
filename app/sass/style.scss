@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 .poste_depense {
   width: 600px;
   margin: 50px;
@@ -12,29 +15,63 @@
 .bad{
   color: red;
 }
-
-#poste {
+#poste{
   td{
-    .edit{
-      display: none;
-    }
+    user-select: none; // Default
+    -webkit-user-select: none; // For Webkit
     .view{
       display: block;
+    }
+    .edit{
+      display: none;
     }
   }
-
   td.editing{
-    form{
-      width: 153px;
-      margin: 0;
-    }
+    padding: 0px 8px;
+    margin: 0;
+    width: 171px;
+    height: 37px;
     .view{
       display: none;
     }
     .edit{
       display: block;
-      width: 153px;
-      margin: 0px;
+    }
+    input{
+      width: 171px;
+      height: 37px;
+      border-color: transparent;
+    }
+    form{
+      width: 171px;
+      height: 37px;
+      padding: 0;
+      margin: 0;
     }
   }
 }
+// #poste {
+//   td{
+//     .edit{
+//       display: none;
+//     }
+//     .view{
+//       display: block;
+//     }
+//   }
+//
+//   td.editing{
+//     form{
+//       width: 153px;
+//       margin: 0;
+//     }
+//     .view{
+//       display: none;
+//     }
+//     .edit{
+//       display: block;
+//       width: 153px;
+//       margin: 0px;
+//     }
+//   }
+// }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/style.css" charset="utf-8">
     <title>BudgetApp</title>
   </head>
-  <body ng-app="BudgetApp" layout="column">
+  <body ng-app="BudgetApp" layout="column" ngCloak >
 
   <md-toolbar layout="row">
     <h1>BudgetApp</h1>
@@ -28,17 +28,24 @@
             <th>Difference</th>
           </thead>
           <tbody>
-            <tr ng-repeat = "data in pctrl.poste_data">
+            <tr ng-repeat = "data in pctrl.poste_data" ngCloak>
               <td>{{data.description}}</td>
-              <td ng-dblclick = pctrl.EditField(data) ng-class="{editing : data === pctrl.depense_edit}">
+              <td ng-dblclick = pctrl.EditDepensePrevuField(data) ng-class="{editing : data == pctrl.editingDepensePrevu}">
                 <div class="view">
                   {{data.depense_prevu | eurocurrency:"€":false}}
                 </div>
-                <form ng-submit = pctrl.saveEdited(data)>
-                  <input ng-model = "data.depense_prevu" class = "edit" type="text" ng-blur="pctrl.saveEdited(data)">
+                <form ng-submit = pctrl.saveEditedDepensePrevu(data)>
+                  <input  class="edit" type="number" ng-model = "data.depense_prevu" ng-blur="pctrl.saveEditedDepensePrevu(data)" poste-focus="data === pctrl.editingDepensePrevu">
                 </form>
               </td>
-              <td>{{data.depense_reel | eurocurrency:"€":false}}</td>
+              <td ng-dblclick = pctrl.EditDepenseReelField(data) ng-class="{editing : data == pctrl.editingDepenseReel}">
+                <div class="view">
+                  {{data.depense_reel | eurocurrency:"€":false}}
+                </div>
+                <form ng-submit = pctrl.saveEditedDepenseReel(data)>
+                  <input class="edit" type="number"  ng-model = "data.depense_reel" ng-blur="pctrl.saveEditedDepenseReel(data)" poste-focus="data == pctrl.editingDepenseReel">
+                </form>
+              </td>
               <td ng-class= "{ok : pctrl.depense(data.description) <= 0, bad : pctrl.depense(data.description) > 0}">{{pctrl.depense(data.description) | eurocurrency:"€":false}}</td>
             </tr>
             <tr>
@@ -59,6 +66,7 @@
     <script src="/bower_components/angular-material/angular-material.min.js" charset="utf-8"></script>
     <script src="/script/app.module.js" charset="utf-8"></script>
     <script src="/script/postes/poste.controller.js" charset="utf-8"></script>
+    <script src="/script/postes/focus.directive.js" charset="utf-8"></script>
     <script src="/script/filters/currency.filter.js" charset="utf-8"></script>
   </body>
 </html>

@@ -14,7 +14,8 @@
         {description: "taxe d'habitation", depense_prevu: 650, depense_reel: 680}
       ];
 
-      vm.depense_edit = null;
+      vm.editingDepensePrevu = null;
+      vm.editingDepenseReel = null;
 
       vm.depense = function(description_poste) {
           var total;
@@ -30,8 +31,7 @@
       vm.total_depense_prevu = function() {
         var total_prevu = 0;
         angular.forEach(vm.poste_data, function(value, key){
-          //console.log(value.depense_prevu);
-          total_prevu +=  value.depense_prevu;
+          total_prevu +=  parseInt(value.depense_prevu);
         });
         return total_prevu;
       };
@@ -39,7 +39,7 @@
       vm.total_depense_reel = function() {
         var total_prevu = 0;
         angular.forEach(vm.poste_data, function(value, key){
-          total_prevu +=  value.depense_reel;
+          total_prevu +=  parseInt(value.depense_reel);
         });
         return total_prevu;
       };
@@ -47,13 +47,18 @@
       vm.total_difference = function() {
         return vm.total_depense_reel() - vm.total_depense_prevu();
       };
-       vm.EditField = function(data) {
-         vm.depense_edit = data;
-       }
-       vm.saveEdited = function(data) {
-         vm.depense_edit = null;
-         console.log('hit');
-       }
+       vm.EditDepensePrevuField = function(data) {
+         vm.editingDepensePrevu = data;
+       };
+       vm.EditDepenseReelField = function(data) {
+         vm.editingDepenseReel = data;
+       };
+       vm.saveEditedDepensePrevu = function(data) {
+         vm.editingDepensePrevu = null;
+       };
+       vm.saveEditedDepenseReel = function(data) {
+         vm.editingDepenseReel = null;
+       };
     }
 
 }());
