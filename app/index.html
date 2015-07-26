@@ -35,7 +35,7 @@
                   {{data.depense_prevu | eurocurrency:"€":false}}
                 </div>
                 <form ng-submit = pctrl.saveEditedDepensePrevu(data)>
-                  <input  class="edit" type="number" ng-model = "data.depense_prevu" cancel-escape="pctrl.EscapeWithoutSaved(data)" ng-blur="pctrl.saveEditedDepensePrevu(data)" poste-focus="data === pctrl.editingDepensePrevu">
+                  <input  class="edit" type="number" ng-model = "data.depense_prevu" cancel-escape="pctrl.EscapeWithoutSavedPrevu(data)" ng-blur="pctrl.saveEditedDepensePrevu(data)" poste-focus="data === pctrl.editingDepensePrevu">
                 </form>
               </td>
               <td ng-dblclick = pctrl.EditDepenseReelField(data) ng-class="{editing : data == pctrl.editingDepenseReel}">
@@ -43,7 +43,7 @@
                   {{data.depense_reel | eurocurrency:"€":false}}
                 </div>
                 <form ng-submit = pctrl.saveEditedDepenseReel(data)>
-                  <input class="edit" type="number"  ng-model = "data.depense_reel" ng-blur="pctrl.saveEditedDepenseReel(data)" poste-focus="data == pctrl.editingDepenseReel">
+                  <input class="edit" type="number"  ng-model = "data.depense_reel" cancel-escape="pctrl.EscapeWithoutSavedReel(data)" ng-blur="pctrl.saveEditedDepenseReel(data)" poste-focus="data == pctrl.editingDepenseReel">
                 </form>
               </td>
               <td ng-class= "{ok : pctrl.depense(data.description) <= 0, bad : pctrl.depense(data.description) > 0}">{{pctrl.depense(data.description) | eurocurrency:"€":false}}</td>
@@ -56,7 +56,16 @@
             </tr>
           </tbody>
         </table>
+        <moduledepense title="Voiture" data='pctrl.poste_data'>
+          <lignedepense
+            ng-repeat = "data in pctrl.poste_data"
+            description="data.description"
+            prevue="data.depense_prevu"
+            reel="data.depense_reel">
+          </lignedepense>
+        </moduledepense>
       </div>
+
     </md-content>
   </div>
 
@@ -69,5 +78,8 @@
     <script src="/script/postes/focus.directive.js" charset="utf-8"></script>
     <script src="/script/postes/escape.directive.js" charset="utf-8"></script>
     <script src="/script/filters/currency.filter.js" charset="utf-8"></script>
+    <script src="/script/directiveTest/moduledepense.directive.js" charset="utf-8"></script>
+    <script src="/script/directiveTest/lignedepense.directive.js" charset="utf-8"></script>
+    <script src="/script/directiveTest/editable.directive.js" charset="utf-8"></script>
   </body>
 </html>
